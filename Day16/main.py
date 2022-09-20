@@ -1,19 +1,24 @@
-# from turtle import Turtle, Screen
-# # hope = Turtle()
-# # print(hope)
+from menu import Menu, MenuItem
+from coffee_maker import CoffeeMaker
+from money_machine import MoneyMachine
 
-# my_screen = Screen()
-# print(my_screen.canvheight)
-# my_screen.exitonclick()
+money_machine = MoneyMachine()
+coffee_maker = CoffeeMaker()
+menu = Menu()
 
-# from turtle import *
-# color('red', 'yellow')
-# begin_fill()
-# while True:
-#     forward(200)
-#     left(170)
-#     if abs(pos()) < 1:
-#         break
-# end_fill()
-# done()
-from prettytable import PrettyTable
+is_on = True
+
+while is_on:
+    options = menu.get_items()
+    choice = input(f"What would you like? {options}: ")
+    if choice == "None":
+        is_on = False 
+    elif choice == "Report":
+        coffee_maker.report()
+        money_machine.report()
+    else:
+        drink = menu.find_drink(choice)
+        
+        if coffee_maker.is_resource_sufficient(drink) and money_machine.make_payment(drink.cost):
+            coffee_maker.make_coffee(drink)
+            

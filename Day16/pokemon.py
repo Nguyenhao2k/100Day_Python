@@ -9,5 +9,7 @@ mytable.add_rows(
                 ['Charmander', 'Fire']
                 ]
     )
+mytable.align = "l"
+mytable.border = True
+mytable.header = True
 print(mytable)
-
