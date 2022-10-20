@@ -1,6 +1,6 @@
 import turtle
-import pandas
 
+import pandas
 
 screen = turtle.Screen()
 screen.title("US State Game") 
@@ -20,13 +20,19 @@ while len(guessed_answer) < 50:
     if your_answer == "Exit":
         # final = pandas.DataFrame(guessed_answer)
         # final.to_csv("Your Answer")
-        missing_states = []
-        for state in states:
-            if state not in guessed_answer:
-                missing_states.append(state)
-            new_data = pandas.DataFrame(missing_states)
-            new_data.to_csv("States you need to learn")
+        missing_states = [state for state in states if state not in guessed_answer]
+        new_data = pandas.DataFrame(missing_states)
+        new_data.to_csv("States you need to learn.csv")
         break
+
+
+        # for state in states:
+        #     if state not in guessed_answer:
+        #         missing_states.append(state)
+            
+        
+
+
     if your_answer in states: 
         guessed_answer.append(your_answer)
         Check = turtle.Turtle()
